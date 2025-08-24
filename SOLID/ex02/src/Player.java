@@ -1,12 +1,14 @@
 public class Player {
-    private Frame last;
-    Player(Frame frm){
-        this.last = frm;
+    private ICache cache;
+    private IRender renderManager;
+    Player(ICache cache, IRender render){
+        this.cache = cache;
+        this.renderManager = render;
     }
     void play(){
         // draw UI
-        System.out.println("\u25B6 Playing " + last.data.length + " bytes");
+        this.renderManager.draw();
         // cache
-        System.out.println("Cached last frame? " + (last!=null));
+        this.cache.cache();
     }
 }
