@@ -1,10 +1,9 @@
 
 public class Demo05 {
-    static int areaAfterResize(Rectangle r){
-        r.setWidth(5); r.setHeight(4); return r.area();
-    }
     public static void main(String[] args) {
-        System.out.println(areaAfterResize(new Rectangle())); // 20
-        System.out.println(areaAfterResize(new Square()));    // 16 (!) violates expectation
+        Rectangle rect = new Rectangle();
+        Square sqr = new Square();
+        System.out.println(rect.areaAfterResize(5, 4)); // 20
+        System.out.println(sqr.areaAfterResize(4));    // 16 (!) violates expectation
     }
 }
