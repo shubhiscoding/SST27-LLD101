@@ -12,7 +12,7 @@ public class ProfileService {
         if (id == null || id.isBlank()) throw new IllegalArgumentException("bad id");
         if (email == null || !email.contains("@")) throw new IllegalArgumentException("bad email");
 
-        UserProfile p = new UserProfile(id, email);
+        UserProfile p = new UserProfile.Builder().setId(id).setEmail(email).Build();
         // later code keeps mutating...
         return p;
     }
@@ -23,6 +23,6 @@ public class ProfileService {
             // silently trim (inconsistent policy)
             displayName = displayName.substring(0, 100);
         }
-        p.setDisplayName(displayName); // mutability leak
+        // p.setDisplayName(displayName); // mutability leak
     }
 }
