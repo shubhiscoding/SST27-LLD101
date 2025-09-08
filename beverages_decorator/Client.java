@@ -7,7 +7,7 @@ public class Client {
         System.out.println("Coffee");
 		System.out.println(coffee.cost());
 
-		Beverage milkCoffee = new MilkDecorator(coffee);
+		Beverage milkCoffee = CondomentFactory.addMilk(coffee);
 		System.out.println("Milk Coffee");
 		System.out.println(milkCoffee.cost());
 	}
