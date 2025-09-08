@@ -1,33 +1,39 @@
 package com.example.notifications;
 
+import java.util.Arrays;
+
 /**
- * Starter demo that uses only the existing Email notifier.
- * TODOs guide you to add decorators and compose them.
+ * Demo showing the Decorator pattern implementation for notifications.
+ * Demonstrates both direct decorator usage and factory abstraction.
  */
 public class Demo {
     public static void main(String[] args) {
-        Notifier base = new EmailNotifier("user@example.com");
+        System.out.println("=== Notification System Demo ===\n");
+        
+        // Using factory methods for cleaner client code
+        Notifier factorySms = NotificationFactory.createEmailAndSmsNotifier(
+            "dev@company.com", "+1-555-0123");
+        factorySms.notify("Test suite passed ✅");
+        
 
-        // Baseline behavior (already works)
-        base.notify("Baseline email only.");
+        Notifier factoryWhatsApp = NotificationFactory.createEmailAndWhatsAppNotifier(
+            "dev@company.com", "dev_team");
+        factoryWhatsApp.notify("Pull request merged 🔄");
+        
 
-        // === YOUR TASKS ===
-        // 1) Create a base decorator class: NotifierDecorator implements Notifier and wraps another Notifier.
-        // 2) Create concrete decorators:
-        //      - SmsDecorator (adds SMS send)
-        //      - WhatsAppDecorator (adds WhatsApp send)
-        //      - SlackDecorator (adds Slack send)
-        // 3) Compose at runtime to achieve these combinations:
-        //      a) Email + SMS
-        //      b) Email + WhatsApp
-        //      c) Email + Slack
-        //      d) Email + WhatsApp + Slack
-        //
-        // Example (after you implement):
-        // Notifier smsAndEmail = new SmsDecorator(base, "+91-99999-11111");
-        // smsAndEmail.notify("Build green ✅");
-        //
-        // Notifier full = new SlackDecorator(new WhatsAppDecorator(base, "user_wa"), "deployments");
-        // full.notify("Deployment completed 🚀");
+        Notifier factoryFull = NotificationFactory.createFullNotifier(
+            "admin@company.com", "admin_team", "alerts");
+        factoryFull.notify("System maintenance scheduled 🔧");
+        
+        Notifier customNotifier = NotificationFactory.createNotifier(
+            "user@company.com", 
+            Arrays.asList(
+                NotificationChannel.sms("+1-555-9999"),
+                NotificationChannel.slack("general")
+            )
+        );
+        customNotifier.notify("Custom notification setup 🎨");
+        
+        System.out.println("\n=== Demo Complete ===");
     }
 }
