@@ -2,15 +2,10 @@ package com.example.notifications;
 
 import java.util.Arrays;
 
-/**
- * Demo showing the Decorator pattern implementation for notifications.
- * Demonstrates both direct decorator usage and factory abstraction.
- */
 public class Demo {
     public static void main(String[] args) {
         System.out.println("=== Notification System Demo ===\n");
         
-        // Using factory methods for cleaner client code
         Notifier factorySms = NotificationFactory.createEmailAndSmsNotifier(
             "dev@company.com", "+1-555-0123");
         factorySms.notify("Test suite passed ✅");

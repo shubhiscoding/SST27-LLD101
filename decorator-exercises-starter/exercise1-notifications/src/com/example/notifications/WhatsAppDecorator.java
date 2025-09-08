@@ -1,8 +1,5 @@
 package com.example.notifications;
 
-/**
- * WhatsApp decorator that adds WhatsApp notification capability to any existing notifier.
- */
 public class WhatsAppDecorator extends NotifierDecorator {
     private final String whatsAppId;
 
@@ -13,9 +10,7 @@ public class WhatsAppDecorator extends NotifierDecorator {
 
     @Override
     public void notify(String text) {
-        // First execute the wrapped notifier's behavior
         super.notify(text);
-        // Then add WhatsApp functionality
         sendWhatsApp(text);
     }
 

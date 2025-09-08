@@ -1,8 +1,5 @@
 package com.example.notifications;
 
-/**
- * Represents a notification channel with its type and target (phone number, username, channel name, etc.).
- */
 public class NotificationChannel {
     private final NotificationChannelType type;
     private final String target;
@@ -20,7 +17,6 @@ public class NotificationChannel {
         return target;
     }
 
-    // Convenience factory methods
     public static NotificationChannel sms(String phoneNumber) {
         return new NotificationChannel(NotificationChannelType.SMS, phoneNumber);
     }
